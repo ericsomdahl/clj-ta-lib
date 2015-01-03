@@ -19,7 +19,7 @@ where each vector represents daily open high low close and volume data
 [ticker]
     (let [raw-data (yahoo-raw-data ticker)]
     ;(let [raw-data (slurp (str "table-" ticker ".csv"))]
-    (map #(split % #",") 					 ; Split each line by comma
+    (map #(split % #",") 		 ; Split each line by comma
         	(reverse                 ; Reverse Line order for proper date order
             (drop 1             	 ; Drop first non-parsable header line
             	(split raw-data #"\n")))))) ; Split the raw data by new line character
