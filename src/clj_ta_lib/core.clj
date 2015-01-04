@@ -6,11 +6,13 @@
   (:use [clj-ta-lib util]))
 
 (defn- getFunc [func]
+  {:doc "accepts a string, returns a CoreMetaData TA function"}
   (CoreMetaData/getInstance func))
 
 (defn- addflags [price-holder flags]
+  {:doc "mark up a PriceHolder with the specified flags"}
   (let [bean (bean price-holder)]
-		(PriceHolder. flags
+		(PriceHolder. ;flags
 		             (:o bean);open
 		             (:h bean);high
 		             (:l bean);low
@@ -20,6 +22,7 @@
 		            )))
 
 (defn- getFunctionInputFlags [func]
+  {:doc "return the flags used by this function"}
   (let [flags (.flags (.getInputParameterInfo func 0))] 
     (if (zero? flags)
       (bit-or InputFlags/TA_IN_PRICE_OPEN 
